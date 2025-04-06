@@ -276,7 +276,9 @@ const CircleStopIcon = () => {
       fill="currentColor"
       width="16"
       height="16"
+      aria-label="Stop"
     >
+      <title>Stop</title>
       <rect width="10" height="10" x="3" y="3" rx="2" />
     </svg>
   );
