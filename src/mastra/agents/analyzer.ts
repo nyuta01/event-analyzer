@@ -1,5 +1,6 @@
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
+import { getEvents } from "../tools/get-events";
 
 export const agent = new Agent({
   name: "Analyzer",
@@ -13,4 +14,7 @@ export const agent = new Agent({
     2. 質問に対して適切なデータがない場合は、"データがありません"と返答してください
   `,
   model: openai("gpt-4o-mini"),
+  tools: {
+    getEvents,
+  },
 });
