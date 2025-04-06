@@ -6,11 +6,13 @@ const toolset = new ComposioToolSet({
   apiKey: process.env.COMPOSIO_API_KEY,
 });
 
+export const inputSchema = z.object({
+  url: z.string(),
+});
+
 export const scrapeUrl = tool({
   description: "Scrape content from a url and optionally extract structured data using firecrawl's api.",
-  parameters: z.object({
-    url: z.string(),
-  }),
+  parameters: inputSchema,
   execute: async (args) => {
     return await toolset.executeAction({
       action: "FIRECRAWL_SCRAPE_EXTRACT_DATA_LLM",
