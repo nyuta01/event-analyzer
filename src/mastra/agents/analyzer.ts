@@ -1,6 +1,7 @@
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
 import { getEvents } from "../tools/get-events";
+import { scrapeUrl } from "../tools/scrape-url";
 
 export const agent = new Agent({
   name: "Analyzer",
@@ -10,11 +11,16 @@ export const agent = new Agent({
     その結果をユーザーに返答してください。
 
     # 注意事項
-    1. 返答には内部データのみを使用してください
+    1. 返答にはToolから取得したデータを用いてください
     2. 質問に対して適切なデータがない場合は、"データがありません"と返答してください
+
+    # Tools
+    - GET_EVENTS: connpassのイベントデータを取得する
+    - SCRAPE_URL: firecrawlでURLのページを取得する
   `,
   model: openai("gpt-4o-mini"),
   tools: {
-    getEvents,
+    GET_EVENTS: getEvents,
+    SCRAPE_URL: scrapeUrl,
   },
 });
