@@ -7,6 +7,7 @@ import { CheckCircle, OctagonX, TriangleAlert } from "lucide-react";
 import { LoaderCircle } from "lucide-react";
 import type { inputSchema as ScrapeUrlInputSchema } from "@/mastra/tools/scrape-url";
 import type { z } from "zod";
+import Image from 'next/image'
 
 type ToolStatus = "running" | "complete" | "incomplete" | "requires-action";
 
@@ -26,8 +27,9 @@ const GetEventsToolUI = makeAssistantToolUI({
       <Card>
         <CardContent>
           <div className="flex items-center gap-2">
-            <span>{statusIconMap[status.type]}</span>
+            <Image src="/connpass.png" alt="connpass" width={25} height={25} />
             <span>Get Events</span>
+            <span>{statusIconMap[status.type]}</span>
           </div>
         </CardContent>
       </Card>
@@ -45,8 +47,12 @@ const ScrapeUrlToolUI = makeAssistantToolUI<z.infer<typeof ScrapeUrlInputSchema>
       <Card>
         <CardContent>
           <div className="flex items-center gap-2">
-            <span>{statusIconMap[status.type]}</span>
+            <Image src="/firecrawl.png" alt="firecrawl" width={25} height={25} />
             <span>Scrape Url</span>
+            <span>{statusIconMap[status.type]}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>URL:</span>
             <span>{args.url}</span>
           </div>
         </CardContent>
