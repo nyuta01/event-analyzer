@@ -10,6 +10,6 @@ export const getEvents = createTool({
   execute: async () => {
     const data = fs.readFileSync("src/data/events.csv");
     const records = parse(data);
-    return records;
+    return records.slice(0, 5);
   },
 });
